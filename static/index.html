@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080b0e" />
+  <title>Stethos — Industrial Acoustic Diagnostics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <header class="topbar shell">
+    <a class="brand" href="#top" aria-label="Stethos home"><span class="brand-mark">▮▮▮</span><span>Stethos<span class="period">.</span></span></a>
+    <div class="top-meta"><span>INDUSTRIAL ACOUSTIC DIAGNOSTICS</span><span class="version">PROTOTYPE V0.1</span></div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero panel">
+      <div class="hero-photo" role="img" aria-label="Industrial motor and pump assembly"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-symbol">♧</span> A STETHOSCOPE FOR MACHINES</p>
+        <h1>Stethos</h1>
+        <h2>Hear the fault.<br><span>Before the failure.</span></h2>
+        <p class="hero-description">Record or upload a short machine sound.<br>Get a health verdict and possible fault indicators.</p>
+        <div class="steps"><span>01 / CAPTURE</span><span>02 / ANALYZE</span><span>03 / INSPECT</span></div>
+      </div>
+      <div class="photo-caption"><span>ACOUSTIC INSPECTION</span><strong>MOTOR / PUMP ASSEMBLY</strong></div>
+    </section>
+
+    <nav class="machine-types" aria-label="Machine types">
+      <div><span>◉</span> MOTORS</div><div><span>≋</span> PUMPS</div><div><span>✣</span> FANS</div><div><span>◌</span> COMPRESSORS</div>
+    </nav>
+
+    <section class="signature" aria-label="Acoustic signature illustration">
+      <div class="signature-label"><span>⌁</span> ACOUSTIC SIGNATURE<small>ILLUSTRATION · NOT LIVE</small></div>
+      <div class="waveform decorative-wave" aria-hidden="true"></div>
+      <div class="signature-note">SOUND → INSIGHT<br><strong>MACHINE HEALTH</strong></div>
+    </section>
+
+    <section class="capture panel" id="capture">
+      <div class="capture-heading"><div class="section-title"><span class="number">1</span><span>CAPTURE SOUND</span></div><div class="ready"><i></i><span id="statusText">READY</span></div></div>
+      <div class="controls">
+        <button id="recordBtn" class="btn btn-primary"><span class="mic-icon">♩</span> <span id="recordLabel">Record machine sound</span></button>
+        <label class="btn btn-dark upload-btn"><span>↥</span> Upload audio file<input id="audioFile" type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg" /></label>
+        <button id="analyzeBtn" class="btn btn-outline" disabled>Analyze sound <span>↗</span></button>
+      </div>
+      <div class="audio-preview" id="audioPreview" hidden>
+        <div class="audio-file-icon">♫</div><div class="audio-file-info"><strong id="audioName">audio-file.wav</strong><span id="audioMeta">Ready for analysis</span></div><button id="clearAudio" class="clear-btn" aria-label="Remove audio">×</button>
+      </div>
+      <audio id="audioPlayer" controls hidden></audio>
+      <div class="capture-tips">
+        <div><strong>Hold near the machine</strong><span>A few centimetres from the housing works best.</span></div>
+        <div><strong>Record 3–8 seconds</strong><span>Long enough for a steady sound; stop after it ends.</span></div>
+        <div><strong>Keep it steady</strong><span>Avoid tapping the mic or talking over it.</span></div>
+      </div>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="results" class="results panel" hidden>
+      <div class="capture-heading"><div class="section-title"><span class="number">2</span><span>DEMO ANALYSIS</span></div><span class="demo-tag">HEURISTIC PROTOTYPE</span></div>
+      <div class="result-grid"><div class="health-card"><span class="result-label">SOUND CHECK</span><strong id="healthVerdict">Review recommended</strong><p id="healthText">This demo does not diagnose machinery. Use the result as a prompt for inspection.</p></div><div class="metrics"><div><span>CLIP LENGTH</span><strong id="durationValue">—</strong></div><div><span>FILE SIZE</span><strong id="sizeValue">—</strong></div><div><span>NEXT ACTION</span><strong>Inspect / compare</strong></div></div></div>
+      <p class="disclaimer">Prototype only: this page does not run a trained fault-detection model. Connect the upload to your FastAPI backend for real signal processing and model inference.</p>
+    </section>
+
+    <section class="roadmap">
+      <p class="eyebrow">WHERE THIS PROTOTYPE IS GOING</p>
+      <div class="roadmap-grid">
+        <article class="road-card"><span class="road-number">1</span><span class="road-status">NOW</span><h3>One-shot check</h3><p>Record a short clip, get a health / faulty verdict with simple sound measurements vs a demo baseline.</p></article>
+        <article class="road-card"><span class="road-number">2</span><span class="road-status">NEXT</span><h3>Trained baseline</h3><p>Learn each machine’s unique “normal” sound from real recordings (autoencoder on spectrograms) instead of a fixed baseline.</p></article>
+        <article class="road-card"><span class="road-number">3</span><span class="road-status">LATER</span><h3>24/7 listening</h3><p>A sensor streams audio continuously per machine, with live dashboards and instant alerts when the sound drifts.</p></article>
+      </div>
+    </section>
+    <footer><span>Stethos · Hackathon prototype</span><span>ANALYSIS IS HEURISTIC DEMO LOGIC, NOT A CERTIFIED DIAGNOSIS</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
